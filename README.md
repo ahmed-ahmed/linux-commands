@@ -37,10 +37,10 @@ less file1.txt                  # view long file content and navigate through pa
 ```
 #### manage files permissions  
 ```sh  
-chmod a+w       #a means all users +w means add write
-chmod u+w       #u means owner +w means add write
-chmod a-w       #remove write permission from all users 
-chown ahmed file1.txt       # change owner of the file 
+chmod a+w                       #a means all users +w means add write
+chmod u+w                       #u means owner +w means add write
+chmod a-w                       #remove write permission from all users 
+chown ahmed file1.txt           # change owner of the file 
 ```
 
 ## Combinning commands 
@@ -49,12 +49,50 @@ chown ahmed file1.txt       # change owner of the file
 - if you combined both commands you can change the permission of set of files with one line of code 
 
 ```sh
-find p* -print0 | xargs -0 chmod a+r    # change permission of all files starts with p
+# change permission of all files starts with p
+# -print0           format ouput 
+#-type f            select only files
+# xargs             break the output and execute chmod once per each item of the output 
 
-            # -print0 format ouput 
-            # xargs break the output and execute chmod once per each item of the output 
+find p* -print0 | xargs -0 chmod a+r    
+
+#unzip all the logs             
+find /var/log/syslog*.gz -type f -print0 | xargs -0 sudo gunzip 
 ```
 
+#### grep 
+looks for mathing lines in the command inputs 
+```sh
+# -c returns the count 
+ifconfig | grep -c "inet6 addr:"            # return no of ip address
+ifconfig | grep "inet6 addr:"               # return ip addresses
+```
 
+#### head 
+return the firsr -n lines 
+```sh
+ifconfig | grep "inet6 addr:"               # return ip addresses | head -n 3 # retrun the first 3 ips
+```
+#### cut  
+split the input into words 
+```sh
+ifconfig | grep "inet" | cut -d ":" -f 2            # split by ":" and return the second item
+```
 
+# Scripting Commands 
+```sh 
+# speciying the scripting language (BASH shel) 
+#!/bin/bash
+# get rge ip address 
+address = $(ifconfig | grep "inet" | cut -d ":" -f 2 | cut -d " " -f 1 | head -n 1) 
+# print it 
+echo $address
+# print to file 
+echo $address >> ~/ip.txt
+```
+you need to make sure to make the file executable 
 
+```sh 
+chmod u+x script.sh         # make it execuatable
+./script.sh                 #run it
+```
