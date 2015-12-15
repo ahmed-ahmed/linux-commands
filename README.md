@@ -96,3 +96,10 @@ you need to make sure to make the file executable
 chmod u+x script.sh         # make it execuatable
 ./script.sh                 #run it
 ```
+
+# Sceduale Tasks (CRON) 
+```sh 
+crontab -e
+```
+
+
