@@ -11,13 +11,16 @@ pwd                 #what's the current directoy
 ps -elf             # check what applications are running  (task manager)
 ```
 #### files and directories: 
+```sh
+cd ~                   # user's home directory
+cd /var                # holds the files that changes frequently
+cd /var/log/syslog*    # these are the logs files
+cd /etc/host           # see the hosts file 
+```
 
- * ~ = home directory
- * /var  =  holds the files that changes frequently
- * /var/log/syslog*   = these are the logs files
- * /etc/host   # see the hosts file 
 #### directory listing 
 ```sh
+
 ls
 ls -l
 ls -l p*      #everything starting with p
