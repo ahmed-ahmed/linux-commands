@@ -8,13 +8,14 @@ Use "man" with any command to display the manual
 whoiam              # who is the current logged in user 
 hostname            # what's the current host name 
 pwd                 #what's the current directoy 
+ps -elf             # check what applications are running  (task manager)
 ```
 #### files and directories: 
 
  * ~ = home directory
  * /var  =  holds the files that changes frequently
  * /var/log/syslog*   = these are the logs files
-
+ * /etc/host   # see the hosts file 
 #### directory listing 
 ```sh
 ls
