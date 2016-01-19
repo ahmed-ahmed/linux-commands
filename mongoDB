@@ -1,1 +1,33 @@
 
+# mongo commands
+db  represent current db
+use demo 
+
+show databases
+
+in mongo data stored in **collections** not **tables** 
+
+show collectinon 
+
+| Database        | Mongo           
+| -------------   |:-------------:|
+| Tables           | collections |
+| rows      | documents      |
+| zebra stripes | are neat      |
+
+## insert a document in a collection 
+**find**: find documents 
+**insert**:  create a new doument 
+**save**: overwrite an existing document 
+```javascript
+db.collection1.insert({_id=1})
+db.collection1.find()                   // find with no params will retrive all documents in a collection 
+db.collection1.insert({_id=1})          // error duplication _id must be unique 
+db.collection1.save({_id=1, name: 'ahmed'})          // it will update the existing document 
+db.collection1.save({_id=1, name: 'ahmed', age: 30})          // it will update the existing document 
+db.collection1.save({_id=1, age: 40})          // it will update the existing document and name property will be deleted
+db.collection1.find({_id=1})                   // find document by id 
+db.collection1.find({age: 40})          // find document by age
+db.collection1.find({_id:1, age: 40})          // find document by age
+db.collection1.find({_id: {$gt: 5, $lt: 7}})          // find document by age
+```
